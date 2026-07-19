@@ -109,17 +109,20 @@ export const submitBooking = createServerFn({ method: "POST" })
       }
 
       // Send customer email
-      const { error: customerError } = await resend.emails.send({
-        // TODO: Replace 'onboarding@resend.dev' with your verified production domain
-        from: "Frames To Forever <onboarding@resend.dev>",
-        to: safe.email,
-        subject: "We've received your enquiry — Frames To Forever",
-        html: customerHtml,
-      });
+      try {
+        const { error: customerError } = await resend.emails.send({
+          // TODO: Replace 'onboarding@resend.dev' with your verified production domain
+          from: "Frames To Forever <onboarding@resend.dev>",
+          to: safe.email,
+          subject: "We've received your enquiry — Frames To Forever",
+          html: customerHtml,
+        });
 
-      if (customerError) {
-        console.error("Customer email failed: FULL RESEND ERROR:", JSON.stringify(customerError, null, 2));
-        throw new Error("Failed to send customer email");
+        if (customerError) {
+          console.error("CUSTOMER EMAIL FAILED", customerError);
+        }
+      } catch (error) {
+        console.error("CUSTOMER EMAIL FAILED", error);
       }
 
       return { success: true };
