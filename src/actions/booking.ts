@@ -96,7 +96,7 @@ export const submitBooking = createServerFn({ method: "POST" })
       // Send owner email
       const { error: ownerError } = await resend.emails.send({
         // TODO: Replace 'onboarding@resend.dev' with your verified production domain (e.g. 'booking@framestoforever.com')
-        from: "Frames To Forever <hello@shadowmodex.site>",
+        from: "Frames To Forever <bookings@framestoforever.in>",
         to: ownerEmail,
         subject: "New Booking Enquiry — Frames To Forever",
         html: ownerHtml,
@@ -112,7 +112,7 @@ export const submitBooking = createServerFn({ method: "POST" })
       try {
         const { error: customerError } = await resend.emails.send({
           // TODO: Replace 'onboarding@resend.dev' with your verified production domain
-          from: "Frames To Forever <hello@shadowmodex.site>",
+          from: "Frames To Forever <bookings@framestoforever.in>",
           to: safe.email,
           subject: "We've received your enquiry — Frames To Forever",
           html: customerHtml,
