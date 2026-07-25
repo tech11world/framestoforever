@@ -169,10 +169,22 @@ export function allPhotos(perCategory?: number): Photo[] {
   return CATEGORIES.flatMap((c) => photosFor(c, perCategory));
 }
 
-// Curated preview photos for the homepage: 1st available frame from each category
+// Fixed list and order of categories strictly for the homepage portfolio preview
+export const HOME_CATEGORIES: string[] = [
+  "Wedding",
+  "Pre Wedding",
+  "Haldi",
+  "Mehendi",
+  "Engagement",
+  "Portrait",
+  "Reception",
+  "Events",
+];
+
+// Curated preview photos for the homepage: 1st available frame from each HOME_CATEGORIES category
 export function previewPhotos(count = 8): Photo[] {
   const previewList: Photo[] = [];
-  for (const cat of CATEGORIES) {
+  for (const cat of HOME_CATEGORIES) {
     const catPhotos = photosFor(cat, 1);
     if (catPhotos.length > 0) {
       previewList.push(catPhotos[0]);
