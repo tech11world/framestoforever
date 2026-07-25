@@ -5,6 +5,7 @@ import { Camera, Award, Heart, MapPin, Aperture, Film, Sparkles, Clock } from "l
 import { PageShell, PageHeader } from "@/components/site/PageShell";
 import { CTA } from "@/components/site/CTA";
 import fraz from "@/assets/fraz.jpg";
+import { photosFor } from "@/lib/photos";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -258,15 +259,15 @@ function AboutPage() {
             </h2>
           </div>
           <div className="mt-14 grid grid-cols-2 md:grid-cols-3 gap-4">
-            {[1035, 1040, 1050, 1062, 1074, 1080].map((id, i) => (
+            {photosFor("About").map((p, i) => (
               <motion.img
-                key={id}
+                key={p.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: i * 0.05 }}
-                src={`https://picsum.photos/id/${id}/900/700`}
-                alt="Behind the scenes"
+                src={p.src}
+                alt={p.alt}
                 loading="lazy"
                 className="w-full h-64 md:h-72 object-cover rounded-md shadow-soft"
               />

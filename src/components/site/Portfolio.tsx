@@ -15,7 +15,7 @@ export function Portfolio({
   lockedCategory,
   showFilters = true,
   showHeader = true,
-  count = 15,
+  count,
 }: PortfolioProps = {}) {
   const params = useParams({ strict: false });
   const routeCategory = params && "category" in params && typeof params.category === "string" 

@@ -1,13 +1,9 @@
 import { motion } from "motion/react";
 import { Instagram } from "lucide-react";
-import { photosFor } from "@/lib/photos";
+import { photosFor, allPhotos } from "@/lib/photos";
 
 export function InstagramFeed() {
-  const posts = [
-    ...photosFor("Wedding", 4),
-    ...photosFor("Pre Wedding", 4),
-    ...photosFor("Fashion", 4),
-  ];
+  const posts = allPhotos(2).slice(0, 12);
   return (
     <section className="bg-cream py-24">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
